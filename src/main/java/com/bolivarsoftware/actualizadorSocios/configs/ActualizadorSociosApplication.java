@@ -2,14 +2,10 @@ package com.bolivarsoftware.actualizadorSocios.configs;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Import;
 
-@Import(HibernateConfiguration.class)
-@SpringBootApplication(exclude = {
-		DataSourceAutoConfiguration.class})
+@SpringBootApplication
 @ComponentScan("com.bolivarsoftware")
 public class ActualizadorSociosApplication {
 

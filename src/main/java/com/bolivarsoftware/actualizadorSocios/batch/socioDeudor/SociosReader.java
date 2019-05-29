@@ -1,4 +1,4 @@
-package com.bolivarsoftware.actualizadorSocios.batch;
+package com.bolivarsoftware.actualizadorSocios.batch.socioDeudor;
 
 import com.bolivarsoftware.actualizadorSocios.domain.Notificacion;
 import com.bolivarsoftware.actualizadorSocios.domainSoccam.Modelo;
