@@ -1,10 +1,10 @@
 package com.bolivarsoftware.actualizadorSocios.services.socioDeudor;
 
 import com.bolivarsoftware.actualizadorSocios.domainSoccam.SocioDeudor;
+import com.bolivarsoftware.actualizadorSocios.persistSoccam.SocioDeudorRepository;
 import com.bolivarsoftware.actualizadorSocios.services.interfaces.ISocioDeudorService;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -13,11 +13,15 @@ import java.util.List;
 @Service
 public class SocioDeudorService implements ISocioDeudorService {
 
+    private SocioDeudorRepository dao;
 
+    public SocioDeudorService(SocioDeudorRepository dao) {
+        this.dao = dao;
+    }
 
     @Override
     public List<SocioDeudor> findAll(){
-        return Arrays.asList(new SocioDeudor());
+        return dao.findAll();
     }
 
 

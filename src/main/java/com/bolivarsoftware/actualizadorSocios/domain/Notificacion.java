@@ -26,15 +26,20 @@ public class Notificacion {
     @Column(name = "HASTA_NOT")
     private Date hasta;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "TIPO_NOT")
+    private TipoNotificacionEnum tipo;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "notificacion")
     private List<NotificacionSocio> notificacionSocio;
 
     public Notificacion() {}
 
-    public Notificacion(String mensaje, Date desde, Date hasta) {
+    public Notificacion(String mensaje, Date desde, Date hasta, TipoNotificacionEnum tipo) {
         this.mensaje = mensaje;
         this.desde = desde;
         this.hasta = hasta;
+        this.tipo = tipo;
     }
 
     public Notificacion(Long i) {
@@ -73,6 +78,13 @@ public class Notificacion {
         this.hasta = hasta;
     }
 
+    public TipoNotificacionEnum getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoNotificacionEnum tipo) {
+        this.tipo = tipo;
+    }
 
     public List<NotificacionSocio> getNotificacionSocio() {
         return notificacionSocio;

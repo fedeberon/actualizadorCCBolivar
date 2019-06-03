@@ -23,6 +23,10 @@ public class NotificacionSocio {
     @JoinColumn(name = "SOCIO_ID", nullable = false)
     private Socio socio;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "NOT_SOC_ESTADO")
+    private EstadoNotificacionSocio estado;
+
     public NotificacionSocio() {}
 
     public NotificacionSocio(Notificacion notificacion, Socio socio) {
@@ -52,5 +56,13 @@ public class NotificacionSocio {
 
     public void setSocio(Socio socio) {
         this.socio = socio;
+    }
+
+    public EstadoNotificacionSocio getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoNotificacionSocio estado) {
+        this.estado = estado;
     }
 }

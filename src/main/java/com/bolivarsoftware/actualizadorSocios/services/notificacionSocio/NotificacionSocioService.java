@@ -1,5 +1,6 @@
 package com.bolivarsoftware.actualizadorSocios.services.notificacionSocio;
 
+import com.bolivarsoftware.actualizadorSocios.domain.Notificacion;
 import com.bolivarsoftware.actualizadorSocios.domain.NotificacionSocio;
 import com.bolivarsoftware.actualizadorSocios.persist.NotificacionSocioRepository;
 import com.bolivarsoftware.actualizadorSocios.services.interfaces.INotificacionSocioService;
@@ -22,5 +23,9 @@ public class NotificacionSocioService implements INotificacionSocioService {
     @Override
     public NotificacionSocio save(NotificacionSocio notificacionSocio) {
         return dao.save(notificacionSocio);
+    }
+
+    public Notificacion getDeudaCorrienteMes(){
+        return dao.getDeudaCorrienteMes();
     }
 }

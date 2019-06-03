@@ -5,6 +5,8 @@ import com.bolivarsoftware.actualizadorSocios.domain.NotificacionSocio;
 import com.bolivarsoftware.actualizadorSocios.domain.Socio;
 import com.bolivarsoftware.actualizadorSocios.domainSoccam.SocioDeudor;
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,11 +15,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class SocioDeudorProcessor implements ItemProcessor<SocioDeudor, NotificacionSocio> {
 
+
+    @Autowired
+    @Qualifier("nuevaNotificacion")
+    private Notificacion notificacion;
+
     @Override
-    public NotificacionSocio process(SocioDeudor modelo) throws Exception {
+    public NotificacionSocio process(SocioDeudor socioDeudor) throws Exception {
         Socio socio = new Socio();
-        socio.setId(1l);
-        Notificacion notificacion = new Notificacion(1l);
+        socio.setId(socioDeudor.getId());
         return new NotificacionSocio(notificacion, socio);
     }
 }

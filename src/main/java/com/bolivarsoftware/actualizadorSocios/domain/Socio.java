@@ -12,7 +12,7 @@ import java.util.List;
 public class Socio {
 
     @Id
-    @Column(name = "SOCIOS_ID")
+    @Column(name = "SOCIO_ID")
     private Long id;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "socio")

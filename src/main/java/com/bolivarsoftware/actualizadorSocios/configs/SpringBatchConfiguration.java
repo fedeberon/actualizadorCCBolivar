@@ -3,12 +3,12 @@ package com.bolivarsoftware.actualizadorSocios.configs;
 import com.bolivarsoftware.actualizadorSocios.batch.notificacionDeSocios.SocioDeudorProcessor;
 import com.bolivarsoftware.actualizadorSocios.batch.notificacionDeSocios.SocioDeudorReader;
 import com.bolivarsoftware.actualizadorSocios.batch.notificacionDeSocios.SocioDeudorWriter;
-import com.bolivarsoftware.actualizadorSocios.batch.socioDeudor.SocioWriter;
-import com.bolivarsoftware.actualizadorSocios.batch.socioDeudor.SociosProcessor;
-import com.bolivarsoftware.actualizadorSocios.batch.socioDeudor.SociosReader;
+import com.bolivarsoftware.actualizadorSocios.batch.socioRetributivo.SocioWriter;
+import com.bolivarsoftware.actualizadorSocios.batch.socioRetributivo.SociosProcessor;
+import com.bolivarsoftware.actualizadorSocios.batch.socioRetributivo.SociosReader;
 import com.bolivarsoftware.actualizadorSocios.domain.NotificacionSocio;
-import com.bolivarsoftware.actualizadorSocios.domainSoccam.Modelo;
 import com.bolivarsoftware.actualizadorSocios.domainSoccam.SocioDeudor;
+import com.bolivarsoftware.actualizadorSocios.domainSoccam.SocioRetributivo;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -81,7 +81,7 @@ public class SpringBatchConfiguration implements BatchConfigurer {
     @Bean
     public Step stepOne(){
         return steps.get("actualizarSociosDeudores")
-                .<Modelo, NotificacionSocio> chunk(10)
+                .<SocioRetributivo, NotificacionSocio> chunk(10)
                 .reader(sociosReader)
                 .processor(sociosProcessor)
                 .writer(socioWriter)

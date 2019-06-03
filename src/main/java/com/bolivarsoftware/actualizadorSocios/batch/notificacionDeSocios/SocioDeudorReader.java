@@ -1,6 +1,8 @@
 package com.bolivarsoftware.actualizadorSocios.batch.notificacionDeSocios;
 
+import com.bolivarsoftware.actualizadorSocios.domain.EstadoNotificacionSocio;
 import com.bolivarsoftware.actualizadorSocios.domain.Notificacion;
+import com.bolivarsoftware.actualizadorSocios.domain.TipoNotificacionEnum;
 import com.bolivarsoftware.actualizadorSocios.domainSoccam.SocioDeudor;
 import com.bolivarsoftware.actualizadorSocios.services.interfaces.INotificacionService;
 import com.bolivarsoftware.actualizadorSocios.services.interfaces.ISocioDeudorService;
@@ -49,6 +51,6 @@ public class SocioDeudorReader implements ItemReader<SocioDeudor> {
 
     @Bean("nuevaNotificacion")
     private Notificacion nuevaNotification(){
-        return notificacionService.save(new Notificacion("Deuda del mes" , new Date(), new Date()));
+        return notificacionService.save(new Notificacion("Deuda del mes" , new Date(), new Date(), TipoNotificacionEnum.DEUDA));
     }
 }

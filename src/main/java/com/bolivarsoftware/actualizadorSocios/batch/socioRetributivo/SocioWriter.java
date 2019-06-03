@@ -1,4 +1,4 @@
-package com.bolivarsoftware.actualizadorSocios.batch.socioDeudor;
+package com.bolivarsoftware.actualizadorSocios.batch.socioRetributivo;
 
 import com.bolivarsoftware.actualizadorSocios.domain.NotificacionSocio;
 import com.bolivarsoftware.actualizadorSocios.services.interfaces.INotificacionSocioService;
