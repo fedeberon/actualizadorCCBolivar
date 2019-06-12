@@ -29,7 +29,6 @@ public class SociosProcessor implements ItemProcessor<SocioRetributivo, Notifica
         logger.info(">>>>>>>>>>>>>> Socio: "  + socioRetributivo);
         Socio socio = new Socio();
         socio.setId(socioRetributivo.getId());
-
         NotificacionSocio notificacionSocio = new NotificacionSocio(notificacion, socio);
         notificacionSocio.setEstado(EstadoNotificacionSocio.INACTIVO);
 

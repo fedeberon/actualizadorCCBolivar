@@ -18,7 +18,6 @@ public class NotificacionSocio {
     @JoinColumn(name = "ID_NOT", nullable = false)
     private Notificacion notificacion;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SOCIO_ID", nullable = false)
     private Socio socio;

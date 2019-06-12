@@ -20,7 +20,7 @@ public class SocioWriter implements ItemWriter<NotificacionSocio> {
     @Override
     public void write(List<? extends NotificacionSocio> socios) throws Exception {
         for (NotificacionSocio socio : socios){
-            notificacionSocioService.save(socio);
+            notificacionSocioService.update(socio);
         }
     }
 }

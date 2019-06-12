@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -49,8 +50,20 @@ public class SocioDeudorReader implements ItemReader<SocioDeudor> {
         else return null;
     }
 
+    LocalDate initial = LocalDate.now();
+
+    private LocalDate desde(){
+        LocalDate start = initial.withDayOfMonth(1);
+        return start;
+    }
+
+    private LocalDate hasta(){
+        LocalDate end = initial.withDayOfMonth(initial.lengthOfMonth());
+        return end;
+    }
+
     @Bean("nuevaNotificacion")
     private Notificacion nuevaNotification(){
-        return notificacionService.save(new Notificacion("Deuda del mes" , new Date(), new Date(), TipoNotificacionEnum.DEUDA));
+        return notificacionService.save(new Notificacion("Deuda del mes" , java.sql.Date.valueOf(desde()), java.sql.Date.valueOf(hasta()), TipoNotificacionEnum.DEUDA));
     }
 }

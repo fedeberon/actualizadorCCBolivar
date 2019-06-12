@@ -10,14 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
 public class ActualizadorSociosApplication {
 
 	public static void main(String[] args) {
-		ApplicationContext context = SpringApplication.run(ActualizadorSociosApplication.class, args);
-
-		for (int i = 0 ; i > context.getBeanDefinitionNames().toString().length(); i++){
-			System.out.print(context.getDisplayName());
-		}
-
-
+		SpringApplication.run(ActualizadorSociosApplication.class, args);
 	}
-
-
 }

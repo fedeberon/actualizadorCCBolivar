@@ -30,10 +30,9 @@ public class HibernateConfiguration {
     public DataSource sqlServerDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/soccam?serverTimezone=UTC");
-        dataSource.setUsername("root");
-        dataSource.setPassword("root");
-
+        dataSource.setUrl("jdbc:mysqL://192.168.0.34:3306/soccam?serverTimezone=UTC");
+        dataSource.setUsername("soccam");
+        dataSource.setPassword("soccam");
 
         return dataSource;
     }

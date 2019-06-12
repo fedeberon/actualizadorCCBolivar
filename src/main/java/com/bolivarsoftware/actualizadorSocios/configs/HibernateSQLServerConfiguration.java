@@ -28,10 +28,9 @@ public class HibernateSQLServerConfiguration {
     public DataSource sqlServerDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        dataSource.setUrl("jdbc:sqlserver://localhost:1433;databaseName=soccamSQL");
-        dataSource.setUsername("sa");
-        dataSource.setPassword("sa");
-
+        dataSource.setUrl("jdbc:sqlserver://localhost:1433;databaseName=soccam");
+        dataSource.setUsername("eTurnos");
+        dataSource.setPassword("eTurnos");
         return dataSource;
     }
 

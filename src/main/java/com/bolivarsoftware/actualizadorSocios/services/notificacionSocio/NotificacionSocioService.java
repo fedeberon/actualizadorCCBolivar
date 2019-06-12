@@ -25,7 +25,15 @@ public class NotificacionSocioService implements INotificacionSocioService {
         return dao.save(notificacionSocio);
     }
 
+    @Override
+    public void update(NotificacionSocio notificacionSocio) {
+        dao.update(notificacionSocio.getNotificacion().getId(), notificacionSocio.getSocio().getId());
+    }
+
+
     public Notificacion getDeudaCorrienteMes(){
         return dao.getDeudaCorrienteMes();
     }
+
+
 }

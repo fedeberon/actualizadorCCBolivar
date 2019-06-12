@@ -10,8 +10,6 @@ import java.util.List;
 @Entity
 @Table(name = "NOTIFICACIONES")
 public class Notificacion {
-
-
     @Id
     @Column(name = "ID_NOT")
     @GeneratedValue(strategy = GenerationType.AUTO)

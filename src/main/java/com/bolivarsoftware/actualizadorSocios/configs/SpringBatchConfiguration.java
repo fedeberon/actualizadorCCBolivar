@@ -79,7 +79,7 @@ public class SpringBatchConfiguration implements BatchConfigurer {
     private PlatformTransactionManager mySqlTransactionManager;
 
     @Bean
-    public Step stepOne(){
+    public Step stepActualizacionEstadoDeSocioRetributivo(){
         return steps.get("actualizarSociosDeudores")
                 .<SocioRetributivo, NotificacionSocio> chunk(10)
                 .reader(sociosReader)
@@ -92,7 +92,7 @@ public class SpringBatchConfiguration implements BatchConfigurer {
     @Bean
     public Job actualizadorDeudaDeSociosJob(){
         return jobs.get("job")
-                .start(stepOne())
+                .start(stepActualizacionEstadoDeSocioRetributivo())
                 .listener(jobListener)
                 .build();
     }
@@ -101,12 +101,12 @@ public class SpringBatchConfiguration implements BatchConfigurer {
     @Bean
     public Job notificacionDeVencimientoJob(){
         return jobs.get("crearNotificacionDeVencimiento")
-                .start(stepTwo())
+                .start(stepNotificacionInicioDeMes())
                 .listener(jobListener)
                 .build();
     }
 
-    private Step stepTwo() {
+    private Step stepNotificacionInicioDeMes() {
         return steps.get("notificarSociosDeudores")
                 .<SocioDeudor, NotificacionSocio> chunk(10)
                 .reader(socioDeudorReader)
@@ -116,15 +116,15 @@ public class SpringBatchConfiguration implements BatchConfigurer {
     }
 
 
-    @Scheduled(fixedDelay = 60000)
+    @Scheduled(fixedDelay = 4000)
     public void schedule() throws Exception {
         getJobLauncher().run(actualizadorDeudaDeSociosJob(), new JobParametersBuilder()
                 .addDate("date", new Date())
                 .toJobParameters());
     }
 
-    //@Scheduled(cron = "0 0 12 1 1/1 ? *")// First day of month
-    @Scheduled(fixedDelay = 5000)
+//    //@Scheduled(cron = "${cron.expression.actualizador}")
+    @Scheduled(fixedDelay = 8000)
     public void scheduleFirstDayOfMonth() throws Exception {
         getJobLauncher().run(notificacionDeVencimientoJob(), new JobParametersBuilder()
                 .addDate("date", new Date())
