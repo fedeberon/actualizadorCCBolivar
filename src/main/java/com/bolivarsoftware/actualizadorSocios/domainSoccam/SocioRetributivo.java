@@ -21,9 +21,6 @@ public class SocioRetributivo {
     @Column(name = "SOR_ESTADO")
     private Integer estado;
 
-    @Column(name = "SOR_FECHA_VENCIMIENTO")
-    private Date fecha_vencimiento;
-
     public Long getId() {
         return id;
     }
@@ -40,12 +37,5 @@ public class SocioRetributivo {
         this.estado = estado;
     }
 
-    public Date getFecha_vencimiento() {
-        return fecha_vencimiento;
-    }
-
-    public void setFecha_vencimiento(Date fecha_vencimiento) {
-        this.fecha_vencimiento = fecha_vencimiento;
-    }
 }
 

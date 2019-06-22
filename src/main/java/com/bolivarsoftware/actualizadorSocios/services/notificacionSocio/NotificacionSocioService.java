@@ -30,10 +30,10 @@ public class NotificacionSocioService implements INotificacionSocioService {
         dao.update(notificacionSocio.getNotificacion().getId(), notificacionSocio.getSocio().getId());
     }
 
-
-    public Notificacion getDeudaCorrienteMes(){
-        return dao.getDeudaCorrienteMes();
-    }
-
+//    public void xxx(){
+//        Long[] ids = dao.findActivos().stream().map()
+//
+//
+//    }
 
 }

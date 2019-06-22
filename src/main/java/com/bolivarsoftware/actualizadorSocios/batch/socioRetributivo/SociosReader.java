@@ -22,9 +22,6 @@ import java.util.Objects;
 public class SociosReader implements ItemReader<SocioRetributivo> {
 
     @Autowired
-    private INotificacionSocioService notificacionSocioService;
-
-    @Autowired
     private ISocioRetributivoService socioRetributivoService;
 
     private Iterator<SocioRetributivo> socioDeudorIterator;
@@ -44,9 +41,5 @@ public class SociosReader implements ItemReader<SocioRetributivo> {
     }
 
 
-    @Bean("notificacionSocioDeDeudaCorrienteMes")
-    public Notificacion getNotificacionSocio(){
-        return notificacionSocioService.getDeudaCorrienteMes();
-    }
 
 }

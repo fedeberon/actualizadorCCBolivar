@@ -8,4 +8,8 @@ import com.bolivarsoftware.actualizadorSocios.domain.Notificacion;
  */
 public interface INotificacionService {
     Notificacion save(Notificacion notificacion);
+
+    Notificacion getDeudaCorrienteMes();
+
+    Notificacion saveActive();
 }

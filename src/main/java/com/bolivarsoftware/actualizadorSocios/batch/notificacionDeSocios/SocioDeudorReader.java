@@ -1,10 +1,6 @@
 package com.bolivarsoftware.actualizadorSocios.batch.notificacionDeSocios;
 
-import com.bolivarsoftware.actualizadorSocios.domain.EstadoNotificacionSocio;
-import com.bolivarsoftware.actualizadorSocios.domain.Notificacion;
-import com.bolivarsoftware.actualizadorSocios.domain.TipoNotificacionEnum;
 import com.bolivarsoftware.actualizadorSocios.domainSoccam.SocioDeudor;
-import com.bolivarsoftware.actualizadorSocios.services.interfaces.INotificacionService;
 import com.bolivarsoftware.actualizadorSocios.services.interfaces.ISocioDeudorService;
 import org.springframework.batch.core.annotation.BeforeStep;
 import org.springframework.batch.item.ItemReader;
@@ -12,11 +8,9 @@ import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -30,40 +24,20 @@ public class SocioDeudorReader implements ItemReader<SocioDeudor> {
     @Autowired
     private ISocioDeudorService socioDeudorService;
 
-    @Autowired
-    private INotificacionService notificacionService;
-
-
-    private Iterator<SocioDeudor> notificacionPadronIterator;
+    private Iterator<SocioDeudor> notificacionSocioDedudor;
 
     @BeforeStep
     private void init() {
         List<SocioDeudor> socioDeudores = socioDeudorService.findAll();
-        this.notificacionPadronIterator = socioDeudores.iterator();
+        this.notificacionSocioDedudor = socioDeudores.iterator();
     }
 
     @Override
     public SocioDeudor read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
-        if(Objects.isNull(notificacionPadronIterator)) return null;
+        if(Objects.isNull(notificacionSocioDedudor)) return null;
 
-        if (notificacionPadronIterator.hasNext()) return this.notificacionPadronIterator.next();
+        if (notificacionSocioDedudor.hasNext()) return this.notificacionSocioDedudor.next();
         else return null;
     }
 
-    LocalDate initial = LocalDate.now();
-
-    private LocalDate desde(){
-        LocalDate start = initial.withDayOfMonth(1);
-        return start;
-    }
-
-    private LocalDate hasta(){
-        LocalDate end = initial.withDayOfMonth(initial.lengthOfMonth());
-        return end;
-    }
-
-    @Bean("nuevaNotificacion")
-    private Notificacion nuevaNotification(){
-        return notificacionService.save(new Notificacion("Deuda del mes" , java.sql.Date.valueOf(desde()), java.sql.Date.valueOf(hasta()), TipoNotificacionEnum.DEUDA));
-    }
 }

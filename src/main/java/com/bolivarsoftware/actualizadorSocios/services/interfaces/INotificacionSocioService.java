@@ -1,7 +1,6 @@
 package com.bolivarsoftware.actualizadorSocios.services.interfaces;
 
 
-import com.bolivarsoftware.actualizadorSocios.domain.Notificacion;
 import com.bolivarsoftware.actualizadorSocios.domain.NotificacionSocio;
 
 /**
@@ -11,6 +10,4 @@ public interface INotificacionSocioService {
     NotificacionSocio save(NotificacionSocio notificacionSocio);
 
     void update(NotificacionSocio notificacionSocio);
-
-    Notificacion getDeudaCorrienteMes();
 }

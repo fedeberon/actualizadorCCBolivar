@@ -115,16 +115,23 @@ public class SpringBatchConfiguration implements BatchConfigurer {
                 .build();
     }
 
-
-    @Scheduled(fixedDelay = 4000)
+    /**
+     * JOB que Actualiza el estado de los socios que pagaron (Socio Retributivo)
+     * @throws Exception
+     */
+    @Scheduled(fixedDelay = 3600000)
     public void schedule() throws Exception {
         getJobLauncher().run(actualizadorDeudaDeSociosJob(), new JobParametersBuilder()
                 .addDate("date", new Date())
                 .toJobParameters());
     }
 
-//    //@Scheduled(cron = "${cron.expression.actualizador}")
-    @Scheduled(fixedDelay = 8000)
+    /**
+     * JOB Que genera la notificacion el primer dia del mes y notifica a todos los socios. (Socio Deudor)
+     * @throws Exception
+     */
+//    @Scheduled(cron = "${cron.expression.actualizador}")
+    @Scheduled(fixedDelay = 3600000)
     public void scheduleFirstDayOfMonth() throws Exception {
         getJobLauncher().run(notificacionDeVencimientoJob(), new JobParametersBuilder()
                 .addDate("date", new Date())
@@ -152,7 +159,6 @@ public class SpringBatchConfiguration implements BatchConfigurer {
         jobLauncher.setJobRepository(getJobRepository());
         jobLauncher.afterPropertiesSet();
         return jobLauncher;
-
     }
 
     @Override

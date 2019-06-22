@@ -24,7 +24,7 @@ public class NotificacionSocio {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "NOT_SOC_ESTADO")
-    private EstadoNotificacionSocio estado;
+    private EstadoNotificacionSocio estado = EstadoNotificacionSocio.ACTIVO;
 
     public NotificacionSocio() {}
 

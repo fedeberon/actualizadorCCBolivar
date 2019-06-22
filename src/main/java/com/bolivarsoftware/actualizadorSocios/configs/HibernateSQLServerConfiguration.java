@@ -31,6 +31,10 @@ public class HibernateSQLServerConfiguration {
         dataSource.setUrl("jdbc:sqlserver://localhost:1433;databaseName=soccam");
         dataSource.setUsername("eTurnos");
         dataSource.setPassword("eTurnos");
+
+//        dataSource.setUrl("jdbc:sqlserver://localhost:1433;databaseName=soccamSQL");
+//        dataSource.setUsername("sa");
+//        dataSource.setPassword("sa");
         return dataSource;
     }
 

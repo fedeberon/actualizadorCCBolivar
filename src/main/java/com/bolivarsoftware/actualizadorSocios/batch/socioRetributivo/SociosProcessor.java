@@ -5,12 +5,14 @@ import com.bolivarsoftware.actualizadorSocios.domain.Notificacion;
 import com.bolivarsoftware.actualizadorSocios.domain.NotificacionSocio;
 import com.bolivarsoftware.actualizadorSocios.domain.Socio;
 import com.bolivarsoftware.actualizadorSocios.domainSoccam.SocioRetributivo;
+import com.bolivarsoftware.actualizadorSocios.services.interfaces.INotificacionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
 
 /**
  * Created by Damian Saez on 17/5/2019.
@@ -21,17 +23,25 @@ public class SociosProcessor implements ItemProcessor<SocioRetributivo, Notifica
     Logger logger = LoggerFactory.getLogger(SociosProcessor.class);
 
     @Autowired
-    @Qualifier("notificacionSocioDeDeudaCorrienteMes")
-    private Notificacion notificacion;
+    private INotificacionService notificacionService;
 
     @Override
     public NotificacionSocio process(SocioRetributivo socioRetributivo) throws Exception {
         logger.info(">>>>>>>>>>>>>> Socio: "  + socioRetributivo);
         Socio socio = new Socio();
         socio.setId(socioRetributivo.getId());
-        NotificacionSocio notificacionSocio = new NotificacionSocio(notificacion, socio);
+        NotificacionSocio notificacionSocio = new NotificacionSocio(getNotificacion(), socio);
         notificacionSocio.setEstado(EstadoNotificacionSocio.INACTIVO);
 
         return notificacionSocio;
+    }
+
+    public Notificacion getNotificacion(){
+        Notificacion notificacionActiva = notificacionService.getDeudaCorrienteMes();
+        if(Objects.isNull(notificacionActiva)){
+            notificacionActiva = notificacionService.saveActive();
+        }
+
+        return notificacionActiva;
     }
 }

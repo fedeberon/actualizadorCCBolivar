@@ -34,6 +34,10 @@ public class HibernateConfiguration {
         dataSource.setUsername("soccam");
         dataSource.setPassword("soccam");
 
+//        dataSource.setUrl("jdbc:mysql://localhost:3306/soccam?serverTimezone=UTC");
+//        dataSource.setUsername("root");
+//        dataSource.setPassword("root");
+
         return dataSource;
     }
 
