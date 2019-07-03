@@ -130,8 +130,8 @@ public class SpringBatchConfiguration implements BatchConfigurer {
      * JOB Que genera la notificacion el primer dia del mes y notifica a todos los socios. (Socio Deudor)
      * @throws Exception
      */
-//    @Scheduled(cron = "${cron.expression.actualizador}")
-    @Scheduled(fixedDelay = 3600000)
+    @Scheduled(cron = "${cron.expression.actualizador}")
+//    @Scheduled(fixedDelay = 3600000)
     public void scheduleFirstDayOfMonth() throws Exception {
         getJobLauncher().run(notificacionDeVencimientoJob(), new JobParametersBuilder()
                 .addDate("date", new Date())

@@ -11,7 +11,7 @@ public class NotificacionSocio {
 
     @Id
     @Column(name = "ID_NOT_SOC")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
